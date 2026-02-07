@@ -1,0 +1,29 @@
+# Core Django
+Django==5.1.5
+django-environ==0.11.2
+
+# Database
+psycopg2-binary==2.9.10
+
+# Redis & Celery
+redis==5.2.1
+celery==5.4.0
+
+# API Integration
+anthropic==0.39.0
+requests==2.32.3
+
+# Django Extensions
+django-crispy-forms==2.3
+crispy-bootstrap5==2025.6
+django-widget-tweaks==1.5.0
+
+# Code Highlighting
+Pygments==2.18.0
+
+# Utilities
+python-dotenv==1.0.1
+pillow==11.0.0
+
+# Development
+django-debug-toolbar==4.4.6

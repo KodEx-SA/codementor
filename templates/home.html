@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <div class="row py-5">
+        <div class="col-lg-12 text-center">
+            <h1 class="display-4 fw-bold mb-4">Welcome to CodeMentor</h1>
+            <p class="lead mb-4">
+                Level up your coding skills through AI-powered code reviews and community feedback
+            </p>
+            {% if not user.is_authenticated %}
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="#" class="btn btn-primary btn-lg px-4 gap-3">Get Started</a>
+                    <a href="#" class="btn btn-outline-secondary btn-lg px-4">Learn More</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="row py-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="fs-1 mb-3">🤖</div>
+                    <h5 class="card-title">AI-Powered Reviews</h5>
+                    <p class="card-text">
+                        Get instant, detailed feedback on your code from Claude AI, 
+                        covering security, performance, and best practices.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="fs-1 mb-3">👥</div>
+                    <h5 class="card-title">Community Insights</h5>
+                    <p class="card-text">
+                        Learn from peer reviews and experienced developers. 
+                        Share your knowledge by reviewing others' code.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="fs-1 mb-3">📈</div>
+                    <h5 class="card-title">Track Progress</h5>
+                    <p class="card-text">
+                        Earn badges, level up your skills, and follow personalized 
+                        learning paths based on your code submissions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="row py-5 bg-light rounded">
+        <div class="col-lg-12">
+            <h2 class="text-center mb-5">How It Works</h2>
+            <div class="row">
+                <div class="col-md-3 text-center mb-4">
+                    <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px; font-size: 24px; font-weight: bold;">
+                        1
+                    </div>
+                    <h5 class="mt-3">Submit Code</h5>
+                    <p>Share a code snippet you want reviewed</p>
+                </div>
+                <div class="col-md-3 text-center mb-4">
+                    <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px; font-size: 24px; font-weight: bold;">
+                        2
+                    </div>
+                    <h5 class="mt-3">Get AI Review</h5>
+                    <p>Receive instant feedback from Claude</p>
+                </div>
+                <div class="col-md-3 text-center mb-4">
+                    <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px; font-size: 24px; font-weight: bold;">
+                        3
+                    </div>
+                    <h5 class="mt-3">Community Input</h5>
+                    <p>Get additional perspectives from peers</p>
+                </div>
+                <div class="col-md-3 text-center mb-4">
+                    <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px; font-size: 24px; font-weight: bold;">
+                        4
+                    </div>
+                    <h5 class="mt-3">Learn & Improve</h5>
+                    <p>Apply feedback and track your growth</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+    <!-- Quick Actions for Logged In Users -->
+    <div class="row py-5">
+        <div class="col-lg-12 text-center">
+            <h2 class="mb-4">Ready to get started?</h2>
+            <a href="#" class="btn btn-primary btn-lg">Submit Your First Code Snippet</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
