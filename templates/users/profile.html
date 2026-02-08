@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}My Profile - CodeMentor{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Profile Info Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                    {% else %}
+                        <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3" style="width: 150px; height: 150px; font-size: 64px;">
+                            {{ user.username|first|upper }}
+                        </div>
+                    {% endif %}
+                    
+                    <h3>{{ user.username }}</h3>
+                    {% if user.get_full_name %}
+                        <p class="text-muted">{{ user.get_full_name }}</p>
+                    {% endif %}
+                    
+                    <hr>
+                    
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <h4 class="text-primary">{{ user.profile.reputation_points }}</h4>
+                            <small class="text-muted">Reputation</small>
+                        </div>
+                        <div class="col-6">
+                            <h4 class="text-success">{{ user.profile.level }}</h4>
+                            <small class="text-muted">Level</small>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <h5>{{ snippets_count }}</h5>
+                            <small class="text-muted">Snippets</small>
+                        </div>
+                        <div class="col-6">
+                            <h5>{{ reviews_given_count }}</h5>
+                            <small class="text-muted">Reviews</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Badges Card -->
+            <div class="card shadow mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">🏆 Badges</h5>
+                    {% if user_badges %}
+                        <div class="d-flex flex-wrap gap-2">
+                            {% for user_badge in user_badges %}
+                                <span class="badge bg-{{ user_badge.badge.badge_type }} fs-6" title="{{ user_badge.badge.description }}">
+                                    {{ user_badge.badge.icon }} {{ user_badge.badge.name }}
+                                </span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-muted">No badges earned yet. Keep coding!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Edit Profile Form -->
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Edit Profile</h4>
+                    
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <h5 class="mt-3 mb-3">Account Information</h5>
+                        {{ user_form|crispy }}
+                        
+                        <h5 class="mt-4 mb-3">Profile Details</h5>
+                        {{ profile_form|crispy }}
+                        
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

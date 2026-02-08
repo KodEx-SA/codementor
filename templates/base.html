@@ -27,6 +27,10 @@
             padding: 2rem 0;
             margin-top: auto;
         }
+        .badge-bronze { background-color: #cd7f32; }
+        .badge-silver { background-color: #c0c0c0; }
+        .badge-gold { background-color: #ffd700; }
+        .badge-platinum { background-color: #e5e4e2; }
     </style>
     
     {% block extra_css %}{% endblock %}
@@ -51,17 +55,20 @@
                             <a class="nav-link" href="#">Submit Code</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Profile</a>
+                            <a class="nav-link" href="{% url 'users:profile' %}">
+                                Profile 
+                                <span class="badge bg-primary">Lvl {{ user.profile.level }}</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Logout</a>
+                            <a class="nav-link" href="{% url 'users:logout' %}">Logout</a>
                         </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
+                            <a class="nav-link" href="{% url 'users:login' %}">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Register</a>
+                            <a class="nav-link btn btn-primary text-white ms-2" href="{% url 'users:register' %}">Register</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -90,7 +97,7 @@
     <footer>
         <div class="container text-center">
             <p class="text-muted mb-0">
-                &copy; 2025 CodeMentor - Learn Code Review Through AI & Community
+                &copy; 2026 CodeMentor - Learn Code Review Through AI & Community
             </p>
         </div>
     </footer>
